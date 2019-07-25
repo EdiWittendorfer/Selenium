@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,54 @@ namespace SeleniumTutorial
 {
     class Program
     {
+
+        //1. Postavljanje drivera kao ChromeDrviver
+        //1.1 Globalna varijabla
+        IWebDriver driver = new ChromeDriver();
+
         static void Main(string[] args)
         {
-            //Postavljanje drivera kao ChromeDrviver
-            IWebDriver driver = new ChromeDriver();
 
-            //Pokretanje drivera te navigiranje na Google homepage
+        }
+
+
+
+        [SetUp] //1.1 Dodavanje NUnit atributa klasama 
+        public void Initialize()
+        {
+            //1. Pokretanje drivera te navigiranje na Google homepage
             driver.Navigate().GoToUrl("http://www.google.com");
+            //1.1. Povratna informacija koja nam govori dali je/nije izvrsen dio testa putem Output linka
+            Console.WriteLine("Opened link");
+        }
 
-            //Postavljanje elementa kao SearchBox ("q") na Google homepage-u
+        [Test]
+        public void ExecuteTest()
+        {
+            //1. Postavljanje elementa kao SearchBox ("q") na Google homepage-u
             IWebElement element = driver.FindElement(By.Name("q"));
 
-            //Upisivanje teksta u element
+            //1. Upisivanje teksta u element
             element.SendKeys("Edi Wittendorfer");
 
-            //Submitanje teksta
+            //1. Submitanje teksta
             element.Submit();
 
-            //zatvaranje drivera
+            Console.WriteLine("Executed Test");
+
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            //1. Zatvaranje drivera
             driver.Close();
+
+            Console.WriteLine("Close the browser");
         }
     }
 }
 
-//DOJMOVI PROGRAMA: Jedostavan nacin izrade testa, no nepregledan i veoma sklon programerskim pogreskama
+//DOJMOVI PROGRAMA: Pregledniji nacin postavljanja testova koji daje povratnu informaciju dali je test izvrsen ili nije pomocu NUnit-a
 
 
