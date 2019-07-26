@@ -26,8 +26,8 @@ namespace SeleniumTutorial
         [SetUp] //1.1 Dodavanje NUnit atributa klasama 
         public void Initialize()
         {
-            //1. Pokretanje drivera te navigiranje na Google homepage
-            driver.Navigate().GoToUrl("http://www.google.com");
+            //1.2. Pokretanje drivera te navigiranje na executeautomation webstranciu
+            driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html");
             //1.1. Povratna informacija koja nam govori dali je/nije izvrsen dio testa putem Output linka
             Console.WriteLine("Opened link");
         }
@@ -35,16 +35,14 @@ namespace SeleniumTutorial
         [Test]
         public void ExecuteTest()
         {
-            //1. Postavljanje elementa kao SearchBox ("q") na Google homepage-u
-            IWebElement element = driver.FindElement(By.Name("q"));
+            //1.2. Odabiranje drop down menu-a
+            SeleniumSetMethods.SelectDropdown(driver, "TitleId", "Mr.", "Id");
 
-            //1. Upisivanje teksta u element
-            element.SendKeys("Edi Wittendorfer");
+            //1.2. Upisivanje texta u text box
+            SeleniumSetMethods.EnterText(driver, "Initial", "EW", "Name");
 
-            //1. Submitanje teksta
-            element.Submit();
-
-            Console.WriteLine("Executed Test");
+            //1.2. Submitanje podataka clickom na button Save
+            SeleniumSetMethods.Click(driver, "Save", "Name");
 
         }
 
@@ -59,6 +57,6 @@ namespace SeleniumTutorial
     }
 }
 
-//DOJMOVI PROGRAMA: Pregledniji nacin postavljanja testova koji daje povratnu informaciju dali je test izvrsen ili nije pomocu NUnit-a
+//DOJMOVI PROGRAMA: Korištenje custom Set metoda kako bih si olakšao pisanje novih testova, poboljšao preglednost koda i samnjio mogućnost upisa krivih informacija.
 
 

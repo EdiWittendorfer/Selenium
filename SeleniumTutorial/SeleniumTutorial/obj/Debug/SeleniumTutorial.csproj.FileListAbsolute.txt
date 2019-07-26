@@ -17,3 +17,4 @@ C:\Users\Edi\source\repos\SeleniumTutorial\SeleniumTutorial\bin\Debug\WebDriver.
 C:\Users\Edi\source\repos\SeleniumTutorial\SeleniumTutorial\obj\Debug\SeleniumTutorial.csproj.CopyComplete
 C:\Users\Edi\source\repos\SeleniumTutorial\SeleniumTutorial\obj\Debug\SeleniumTutorial.exe
 C:\Users\Edi\source\repos\SeleniumTutorial\SeleniumTutorial\obj\Debug\SeleniumTutorial.pdb
+C:\Users\Edi\source\repos\SeleniumTutorial\SeleniumTutorial\bin\Debug\SeleniumExtras.PageObjects.dll
