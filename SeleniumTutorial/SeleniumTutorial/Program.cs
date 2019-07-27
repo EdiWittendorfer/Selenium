@@ -41,6 +41,10 @@ namespace SeleniumTutorial
             //1.2. Upisivanje texta u text box
             SeleniumSetMethods.EnterText(driver, "Initial", "EW", "Name");
 
+            //1.3. U konzolu upisuje vrijednosti koje se nalaze u TitleId i Initial poljima 
+            Console.WriteLine("The value from my Title is: " + SeleniumGetMethods.GetTextFromDDL(driver, "TitleId", "Id"));
+            Console.WriteLine("The value from my Initial is: " + SeleniumGetMethods.GetText(driver, "Initial", "Name"));
+
             //1.2. Submitanje podataka clickom na button Save
             SeleniumSetMethods.Click(driver, "Save", "Name");
 
@@ -57,6 +61,7 @@ namespace SeleniumTutorial
     }
 }
 
-//DOJMOVI PROGRAMA: Korištenje custom Set metoda kako bih si olakšao pisanje novih testova, poboljšao preglednost koda i samnjio mogućnost upisa krivih informacija.
+//DOJMOVI PROGRAMA: Korištenje custom Get metoda pomoću kojih mogu dohvatiti upisane/odabrane vrijednosti iz text box-a, drop down menu-a i sl.
+//                  Get metode omogućuju korištenje povratnih informacija za ispravnost programa...npr. usporedba upisanih informacija sa informacijma iz Get metode
 
 
