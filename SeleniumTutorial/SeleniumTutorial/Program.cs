@@ -12,9 +12,7 @@ namespace SeleniumTutorial
     class Program
     {
 
-        //1. Postavljanje drivera kao ChromeDrviver
-        //1.1 Globalna varijabla
-        IWebDriver driver = new ChromeDriver();
+        
 
         static void Main(string[] args)
         {
@@ -26,27 +24,31 @@ namespace SeleniumTutorial
         [SetUp] //1.1 Dodavanje NUnit atributa klasama 
         public void Initialize()
         {
+            //1.4. Pozivanje drivera kroz "PropertiesCollection"
+            PropertiesCollection.driver = new ChromeDriver();
+
             //1.2. Pokretanje drivera te navigiranje na executeautomation webstranciu
-            driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html");
+            PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html");
             //1.1. Povratna informacija koja nam govori dali je/nije izvrsen dio testa putem Output linka
             Console.WriteLine("Opened link");
         }
 
+        //1.4. Primjenio sam "PropertyType" na sve testove gdje su bili hard kodirani Id/Name 
         [Test]
         public void ExecuteTest()
         {
             //1.2. Odabiranje drop down menu-a
-            SeleniumSetMethods.SelectDropdown(driver, "TitleId", "Mr.", "Id");
+            SeleniumSetMethods.SelectDropdown("TitleId", "Mr.", PropertyType.Id);
 
             //1.2. Upisivanje texta u text box
-            SeleniumSetMethods.EnterText(driver, "Initial", "EW", "Name");
+            SeleniumSetMethods.EnterText("Initial", "EW", PropertyType.Name);
 
             //1.3. U konzolu upisuje vrijednosti koje se nalaze u TitleId i Initial poljima 
-            Console.WriteLine("The value from my Title is: " + SeleniumGetMethods.GetTextFromDDL(driver, "TitleId", "Id"));
-            Console.WriteLine("The value from my Initial is: " + SeleniumGetMethods.GetText(driver, "Initial", "Name"));
+            Console.WriteLine("The value from my Title is: " + SeleniumGetMethods.GetTextFromDDL("TitleId", PropertyType.Id));
+            Console.WriteLine("The value from my Initial is: " + SeleniumGetMethods.GetText("Initial", PropertyType.Name));
 
             //1.2. Submitanje podataka clickom na button Save
-            SeleniumSetMethods.Click(driver, "Save", "Name");
+            SeleniumSetMethods.Click("Save", PropertyType.Name);
 
         }
 
@@ -54,14 +56,13 @@ namespace SeleniumTutorial
         public void CleanUp()
         {
             //1. Zatvaranje drivera
-            driver.Close();
+            PropertiesCollection.driver.Close();
 
             Console.WriteLine("Close the browser");
         }
     }
 }
 
-//DOJMOVI PROGRAMA: Korištenje custom Get metoda pomoću kojih mogu dohvatiti upisane/odabrane vrijednosti iz text box-a, drop down menu-a i sl.
-//                  Get metode omogućuju korištenje povratnih informacija za ispravnost programa...npr. usporedba upisanih informacija sa informacijma iz Get metode
-
+//DOJMOVI PROGRAMA: Samnjio sam ponavljanje code-a s klasom "PropertiesCollection" pomoću koje pozivam driver. Preglednije metode.
+//                  Kako bih se izbjegao *bug* krivo upisanog naziva Id/Name koristim "PropertyType" pomoću kojega odabira tip varijable.
 
