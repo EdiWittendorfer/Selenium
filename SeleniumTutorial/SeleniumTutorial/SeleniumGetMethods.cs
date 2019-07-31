@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SeleniumTutorial
 {
-    //1.4. Više ne prosljeđujem driver unutar svake metode, koristim "PropertiesCollection"
-    //1.4. Umjesto hard kodiranog Id/Name, koristim "PropertyType" klasu za "elementType"
+    //1.4. No longer do I pass the driver inside each method, I use "PropertiesCollection"
+    //1.4. Instead of hard-coded Id/Name, I use the "PropertyType" class for "elementType"
     class SeleniumGetMethods
     {
-        //1.3. Dohvaćanje upisanog texta 
+        //1.3. Retrieving typed text
         public static string GetText(string element, PropertyType elementType)
         {
             if (elementType == PropertyType.Id)
@@ -23,7 +23,7 @@ namespace SeleniumTutorial
 
         }
 
-        //1.3. Dohvaćanje texta iz Drop Down menu-a
+        //1.3. Retrieving text from the Drop Down menu
         public static string GetTextFromDDL(string element, PropertyType elementType)
         {
             if (elementType == PropertyType.Id)
