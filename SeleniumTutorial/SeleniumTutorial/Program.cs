@@ -64,5 +64,5 @@ namespace SeleniumTutorial
 }
 
 //PROGRAM IMPRESSIONS: I have cut down on the repeating code with the "PropertiesCollection" class by which I call the driver.More transparent methods.
-//                  To avoid the *bug* misspelled name Id/Name I use "PropertyType" to select the type of variable.
+//                     To avoid the *bug* misspelled name Id/Name I use "PropertyType" to select the type of variable.
 
